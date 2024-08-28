@@ -20,3 +20,27 @@ export const validateMyUserRequest = [
 
   handleValidationErrors,
 ];
+
+export const validateMyRestaurantRequest = [
+  body("imeRestorana").notEmpty().withMessage("Ime restorana je potreno!"),
+
+  body("grad").notEmpty().withMessage("Grad je potreban!"),
+
+  body("drzava").notEmpty().withMessage("Drzava je potrebna!"),
+
+  body("cijenaDostave").isFloat({ min: 0 }).withMessage("Cijena dostave mora biti pozitivan broj!"),
+
+  body("procijenjenoVrijemeDostave").isInt({ min: 0 }).withMessage("Procijenjeno vrijeme dostave mora biti pozitivan broj!"),
+
+  body("vrsteJela").isArray().withMessage("Vrste jela moraju biti polje ili skup!").not().isEmpty().withMessage("Skup vrsta jela ne smije biti prazan!"),
+
+  //body("jelovnik").isArray().withMessage("Jelovnik mora biti polje ili skup!").not().isEmpty().withMessage("Skup jela na meniju ne smije biti prazan!"),
+
+  body("jelovnik").isArray().withMessage("Jelovnik mora biti polje ili skup!"),
+
+  body("jelovnik.*.ime").notEmpty().withMessage("Ime jela je potrebno"),
+
+  body("jelovnik.*.cijena").isFloat({ min: 0 }).withMessage("Cijena jela je potrebna i mora biti pozitivan broj"),
+
+  handleValidationErrors,
+];
