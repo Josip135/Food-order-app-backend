@@ -1,9 +1,12 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType } from "mongoose";
 
 const jeloSchema = new mongoose.Schema({
+  _id: { type: mongoose.Schema.Types.ObjectId, required: true, default: () => new mongoose.Types.ObjectId(), },
   ime: { type: String, required: true },
   cijena: { type: Number, required: true },
 });
+
+export type JeloType = InferSchemaType<typeof jeloSchema>
 
 const restaurantSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },

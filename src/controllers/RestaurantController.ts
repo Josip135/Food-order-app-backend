@@ -1,21 +1,22 @@
 import { Request, Response } from "express";
 import Restoran from "../models/restaurant";
 
-/*const getRestaurant = async (req: Request, res: Response) => {
+const getRestaurant = async (req: Request, res: Response) => {
   try {
-    const restaurantId = req.params.restaurantId;
+    const restoranId = req.params.restoranId;
 
-    const restaurant = await Restoran.findById(restaurantId);
-    if (!restaurant) {
-      return res.status(404).json({ message: "restaurant not found" });
+    const restoran = await Restoran.findById(restoranId);
+    if (!restoran) {
+      return res.status(404).json({ message: "Restoran nije pronađen!" });
     }
 
-    res.json(restaurant);
+    res.json(restoran);
+    console.log(restoran);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "something went wrong" });
+    res.status(500).json({ message: "Nešto je pošlo po krivu!" });
   }
-};*/
+};
 
 const searchRestaurant = async (req: Request, res: Response) => {
   try {
@@ -86,5 +87,5 @@ const searchRestaurant = async (req: Request, res: Response) => {
 
 export default {
   searchRestaurant,
-
+  getRestaurant,
 }
