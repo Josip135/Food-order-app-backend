@@ -9,6 +9,17 @@ const FRONTEND_URL = process.env.FRONTEND_URL as string;
 
 const STRIPE_ENPOINT_SECRET = process.env.STRIPE_WEBHOOK_SECRET as string;
 
+const getMyOrders = async (req: Request, res: Response) => {
+  try {
+    const narudzbe = await Narudzba.find({ user: req.userId }).populate("restoran").populate("user");
+
+    res.json(narudzbe);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Nešto je pošlo po krivu!" });
+  }
+}
+
 type CheckoutSessionRequest = {
   cartItems: {
     jeloId: string;
@@ -160,6 +171,7 @@ const createSession = async (lineItems: Stripe.Checkout.SessionCreateParams.Line
 };
 
 export default {
+  getMyOrders,
   createCheckoutSession,
   stripeWebHookHandler,
 }

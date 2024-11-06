@@ -19,7 +19,7 @@ const narudzbaSchema = new mongoose.Schema({
   ukupanZbroj: Number,
   status: {
     type: String,
-    enum: ["postavljena", "placena", "uTijeku", "uTokuDostave", "dostavljena"],
+    enum: ["postavljena", "placena", "uIzradi", "uTokuDostave", "dostavljena"],
   },
   createdAt: { type: Date, default: Date.now }
 });
